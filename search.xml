@@ -11,6 +11,12 @@
         <content type="html"><![CDATA[<h1 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;Integer, Integer&gt; map = <span class="keyword">new</span> <span class="title class_">HsahMap</span>&lt;&gt;();</span><br><span class="line">map.put(<span class="number">1</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure><h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p>好好学习</p>]]></content>
       
       
+      <categories>
+          
+          <category> 面经 </category>
+          
+      </categories>
+      
       
         <tags>
             
