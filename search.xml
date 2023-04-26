@@ -4,6 +4,35 @@
   
     
     <entry>
+      <title>力扣每日一题-1031</title>
+      <link href="/post/691d0a10.html"/>
+      <url>/post/691d0a10.html</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://leetcode.cn/problems/maximum-sum-of-two-non-overlapping-subarrays/"><strong>力扣1031：两个非重叠子数组的最大和</strong></a></p><blockquote><p>给你一个整数数组 nums 和两个整数 firstLen 和 secondLen，请你找出并返回两个 <strong>非重叠</strong> <strong>子数组</strong> 中元素的最大和，长度分别为 firstLen 和 secondLen 。<br>长度为 firstLen 的子数组可以出现在长为 secondLen 的子数组之前或之后，但二者必须是不重叠的。<br>子数组是数组的一个 <strong>连续</strong> 部分。</p><p>示例1：<br>输入：nums &#x3D; [0,6,5,2,2,5,1,9,4], firstLen &#x3D; 1, secondLen &#x3D; 2<br>输出：20<br>解释：子数组的一种选择中，[9] 长度为 1，[6,5] 长度为 2。</p><p>示例2：<br>输入：nums &#x3D; [3,8,1,3,2,1,8,9,0], firstLen &#x3D; 3, secondLen &#x3D; 2<br>输出：29<br>解释：子数组的一种选择中，[3,8,1] 长度为 3，[8,9] 长度为 2。</p><p>示例3：<br>输入：nums &#x3D; [2,1,5,6,0,9,5,0,3,8], firstLen &#x3D; 4, secondLen &#x3D; 3<br>输出：31<br>解释：子数组的一种选择中，[5,6,0,9] 长度为 4，[0,3,8] 长度为 3。</p></blockquote><p><strong>思路</strong>：设长度为firstLen的子数组为a，长度为secondLen的子数组为b。两种情况：左a右b，左b右a。<br>先讨论左a右b，左b右a可同理。<br>从前往后枚举b的右端点（右端点从 firstLen+secondLen 开始，实际是b数组右端点的下一个，左闭右开区间方便利用前缀和计算子数组的和），过程中记录a的最大值，并每次更新 a+b 的最大值。</p><p><strong>代码</strong>：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">maxSumTwoNoOverlap</span><span class="params">(<span class="type">int</span>[] nums, <span class="type">int</span> firstLen, <span class="type">int</span> secondLen)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> nums.length;</span><br><span class="line">        <span class="type">int</span>[] s = <span class="keyword">new</span> <span class="title class_">int</span>[n + <span class="number">1</span>]; <span class="comment">// 记录数组前缀和</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            s[i + <span class="number">1</span>] = s[i] + nums[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> Math.max(f(s, firstLen, secondLen), f(s, secondLen, firstLen)); <span class="comment">// 左a右b和左b右a取最大值</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">f</span><span class="params">(<span class="type">int</span>[] s, <span class="type">int</span> firstLen, <span class="type">int</span> secondLen)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">maxSumA</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 左边子数组的和,长度为secondLen,记下右移过程中的最大值</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">// 最大和</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> firstLen + secondLen; i &lt; s.length; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">B</span> <span class="operator">=</span> s[i] - s[i - secondLen]; <span class="comment">// 右边子数组的和,长度为secondLen</span></span><br><span class="line">            maxSumA = Math.max(maxSumA, s[i - secondLen] - s[i - secondLen - firstLen]);</span><br><span class="line">            ans = Math.max(ans, maxSumA + B);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>时间复杂度：O(n)</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 算法刷题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 算法 </tag>
+            
+            <tag> 力扣 </tag>
+            
+            <tag> 前缀和 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>排序算法总结</title>
       <link href="/post/cd65786b.html"/>
       <url>/post/cd65786b.html</url>
