@@ -1,0 +1,235 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"><title>华为4.26暑期实习机考 | SuperOye</title><meta name="author" content="Oye"><meta name="copyright" content="Oye"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="华为4.26机考题目解析 一、批量初始化次数  某部门在开发一个代码分析工具，需要分析模块之间的依赖关系，用来确定模块的初始化顺序、是否有循环依期等问题。”批量初始化”是指一次可以初始化一个或多个模块。例如模块1依赖模块2，模块3也依赖模块2，但模块1和3没有依赖关系，则必须先”批量初始化”模块2，再”批量初始化”模块1和3。现给定一组模块间的依赖关系，请计算需要“批量初始化”的次数。 输入:第1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="华为4.26暑期实习机考">
+<meta property="og:url" content="https://superoye.fun/post/7f73510d.html">
+<meta property="og:site_name" content="SuperOye">
+<meta property="og:description" content="华为4.26机考题目解析 一、批量初始化次数  某部门在开发一个代码分析工具，需要分析模块之间的依赖关系，用来确定模块的初始化顺序、是否有循环依期等问题。”批量初始化”是指一次可以初始化一个或多个模块。例如模块1依赖模块2，模块3也依赖模块2，但模块1和3没有依赖关系，则必须先”批量初始化”模块2，再”批量初始化”模块1和3。现给定一组模块间的依赖关系，请计算需要“批量初始化”的次数。 输入:第1">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://superoye.fun/img/avatar.jpg">
+<meta property="article:published_time" content="2023-05-05T09:23:54.000Z">
+<meta property="article:modified_time" content="2023-05-05T11:59:47.430Z">
+<meta property="article:author" content="Oye">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://superoye.fun/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://superoye.fun/post/7f73510d.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/flickr-justified-gallery/dist/fjGallery.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  }
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '华为4.26暑期实习机考',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2023-05-05 19:59:47'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/universe.css"><!-- hexo injector head_end start --><link rel="stylesheet" href="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.css" /><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/background.png')"><nav id="nav"><span id="blog-info"><a href="/" title="SuperOye"><span class="site-name">SuperOye</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page group" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page child" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-user"></i><span> 关于我</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">华为4.26暑期实习机考</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-05-05T09:23:54.000Z" title="发表于 2023-05-05 17:23:54">2023-05-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-05-05T11:59:47.430Z" title="更新于 2023-05-05 19:59:47">2023-05-05</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%88%B7%E9%A2%98/">算法刷题</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">1.7k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="华为4.26暑期实习机考"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><p><strong>华为4.26机考题目解析</strong></p>
+<p><strong>一、批量初始化次数</strong></p>
+<blockquote>
+<p>某部门在开发一个代码分析工具，需要分析模块之间的依赖关系，用来确定模块的初始化顺序、是否有循环依期等问题。”批量初始化”是指一次可以初始化一个或多个模块。例如模块1依赖模块2，模块3也依赖模块2，但模块1和3没有依赖关系，则必须先”批量初始化”模块2，再”批量初始化”模块1和3。现给定一组模块间的依赖关系，请计算需要“批量初始化”的次数。</p>
+<p><strong>输入</strong>:<br>第1行只有一个数字.表示模块总数N。<br>随后的N行依次表示模块1到N的依赖数据。每行的第1个数表示依赖的模块数量(不会超过N)，之后的数字表示当前模块依赖的ID序列。该序列不会重复出现相同的数字，模块ID的取值定在[1,N]之内。</p>
+<p>模块总数N取值范围 1&lt;&#x3D;N&lt;&#x3D;1000.<br>每一行里面的数字按1个空格分隔。</p>
+<p><strong>输出</strong>:<br>输出”批量初始化次数”.若有循环依赖无法完成初始化，则输出-1。</p>
+<p><strong>样例1</strong>：<br>输入:<br>5<br>3 2 3 4<br>1 5<br>1 5<br>1 5<br>0<br>输出: 3</p>
+<p><strong>样例2</strong>：<br>输入:<br> 3<br> 1 2<br> 1 3<br> 1 1<br> 输出: -1</p>
+</blockquote>
+<p><strong>思路</strong>：拓扑排序</p>
+<p><strong>代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Main1</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">        <span class="type">Scanner</span> <span class="variable">cin</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Scanner</span>(System.in);</span><br><span class="line">        <span class="type">int</span> <span class="variable">N</span> <span class="operator">=</span> cin.nextInt();</span><br><span class="line">        ArrayList&lt;Integer&gt;[] G = <span class="keyword">new</span> <span class="title class_">ArrayList</span>[N + <span class="number">1</span>]; <span class="comment">// 邻接表,每个模块所连接的后一个模块</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">            G[i] = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;(); <span class="comment">// 初始化邻接表</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span>[] inDegree = <span class="keyword">new</span> <span class="title class_">int</span>[N + <span class="number">1</span>]; <span class="comment">// 每个模块的入度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">num</span> <span class="operator">=</span> cin.nextInt();  <span class="comment">// 第i个模块依赖的模块个数</span></span><br><span class="line">            <span class="keyword">if</span> (num == <span class="number">0</span>) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; num; ++j) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">t</span> <span class="operator">=</span> cin.nextInt();</span><br><span class="line">                G[t].add(i);  <span class="comment">// 加入模块t的邻接</span></span><br><span class="line">                inDegree[i] += <span class="number">1</span>; <span class="comment">// 模块i的入度+1 (总共就加num)</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Deque&lt;Integer&gt; q = <span class="keyword">new</span> <span class="title class_">ArrayDeque</span>&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">1</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (inDegree[i] == <span class="number">0</span>) &#123;</span><br><span class="line">                q.offer(i); <span class="comment">// 入度为0的模块先加入队列</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">ans</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">count</span> <span class="operator">=</span> <span class="number">0</span>;  <span class="comment">// 判断是否遍历了所有节点，以此判断是否存在环</span></span><br><span class="line">        <span class="keyword">while</span> (!q.isEmpty()) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">size</span> <span class="operator">=</span> q.size();</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; size; ++i) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">u</span> <span class="operator">=</span> q.poll();</span><br><span class="line">                count++;</span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; G[u].size(); ++j) &#123;</span><br><span class="line">                    <span class="type">int</span> <span class="variable">v</span> <span class="operator">=</span> G[u].get(j);</span><br><span class="line">                    inDegree[v]--;</span><br><span class="line">                    <span class="keyword">if</span> (inDegree[v] == <span class="number">0</span>) &#123;</span><br><span class="line">                        q.offer(v);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            ans++; <span class="comment">// 当前批入度为0的节点遍历完成</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (count == N) &#123;</span><br><span class="line">            System.out.println(ans);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            System.out.println(-<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>二、分配资源ID</strong></p>
+<blockquote>
+<p>给定一个管理ID的资源池，可以从资源池中<strong>分配资源ID</strong>和<strong>释放资源ID</strong>，分配方式有<strong>动态分配</strong>和<strong>指定分配</strong>，动态分配是从资源池的开始分配一个资源ID，指定分配是指定一个资源ID进行分配，无论哪种分配方式释放资源ID时都需要放到资源池的<strong>尾部</strong>。执行一系列操作后，请问资源池的第一个空闲资源ID应该是多少?<strong>注意:</strong></p>
+<p>资源池的初始顺序是从小到大。<br>资源池中空闲资源ID不足时，动态分配失败，对资源池不进行任何操作.<br>指定分配资源ID已经被占用或者不在资源池范围内时，对资源池不进行任何操作。<br>释放资源ID不在资源池范围内时或者已经是空闲资源ID时，对资源池不进行任何操作。<br>保证每个用例最后都有空闲资源ID。</p>
+<p><strong>输入</strong>:<br>第一行是资源池的范围；<br>第二行是操作个数；<br>第三行开始，第一个数字代表操作类型，1表示动态分配，2表示指定分配，3表示释放；<br>如果第一个数字是1，第二个表示分配的个数;<br>如果第一个数字是2，第二个表示分配的资源ID;<br>如果第一个数字是3，第二个表示释放的资源ID。</p>
+<p><strong>输出</strong>：<br>资源池的第一个空闲资源ID</p>
+<p><strong>样例1</strong>：<br>输入:<br>1 3<br>2<br>2 2<br>3 1<br>输出:<br>2<br>解释:<br>第一行资源池范围是[1，3]，资源池的初始顺序是1-&gt;2-&gt;3。<br>第二行操作个数有2个。<br>第三行动态分配1个资源ID，资源池中剩余的资源ID顺序是2-&gt;3。<br>第四行释放1个资源ID，资源ID是1，资源池中剩余的资源ID顺序是2-&gt;3-&gt;1.<br>执行以上操作后，资源池的第一个空闲资源ID是2。</p>
+<p><strong>样例2</strong>：<br>输入:<br>1 3<br>3<br>2 2<br>3 2<br>1 1<br>输出:<br> 3<br>解释:<br>第一行资源池范围是[1,3]，资源池的初始顺序是1-&gt;2-&gt;3。<br>第二行操作人数有3个。<br>第三行指定分配1个资源ID，资源ID是2，资源池中剩余的资源ID顺序是1-&gt;3-&gt;2。<br>第四行释放1个资源D，资源ID是2，资源池中剩余的资源ID顺序是1-&gt;3-&gt;2。<br>第五行动态分配1个资源ID，分配的资源ID是1，资源池中剩余的资源ID顺序是3-&gt;2。<br>执行以上操作后，资源池的第一个空闲资源ID是3。</p>
+<p><strong>提示</strong>：<br>保证输入的操作都是合法的。<br>操作类型范围是[1,3]。<br>分配次数范围是[1,100000]。<br>资源池范围的最小值是1，最大值取值范围是[1,100000]。<br>如果操作类型是1，分配资源个数的取值范围是[1,200]。</p>
+</blockquote>
+<p><strong>思路</strong>：</p>
+<p><strong>代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>三、疯长的草</strong></p>
+<blockquote>
+<p>将N种不同的随机种在一块广漠无边的二维平面上(角坐标系内)，给定二维数组points表示第0天所有草的初始位置，第i项points[I]&#x3D;[XI,Y]表示第0天草i点[XI,YI].每天，被草覆盖的点会向外蔓延到它上、下、左、右、左上、左下、右上、右下8个邻居点。注意，初始状态下，可能有多种草在同一点上。<br>现给定一个整数 M，问最少需要多少天，方能找到一点同时至少有 M 种草?</p>
+<p><strong>输入</strong><br>第一行输入整数M。(2 &lt;&#x3D; M &lt;&#x3D; n)<br>第二行输入草的种数n。(2 &lt;&#x3D; n &lt;&#x3D; 50)<br>后面连续n行输入草i初始位置[xi, yi]。(1 &lt;&#x3D; xi,yi &lt;&#x3D; 10^9)</p>
+<p><strong>输出</strong><br>返回找到一点至少生长 M 种草的最少天数，找不到返回0。</p>
+<p><strong>样例1</strong>：<br>输入:<br> 2<br> 2<br> 2 1<br> 6 2<br>输出:<br> 2</p>
+<p><strong>样例2</strong>：<br>输入:<br> 2<br> 3<br> 2 1<br> 6 2<br> 100 100<br>输出:<br> 2</p>
+</blockquote>
+<p><strong>思路</strong>：</p>
+<p><strong>代码</strong>：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="https://superoye.fun">Oye</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="https://superoye.fun/post/7f73510d.html">https://superoye.fun/post/7f73510d.html</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://superoye.fun" target="_blank">SuperOye</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/">算法</a></div><div class="post_share"><div class="social-share" data-image="/img/avatar.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/post/691d0a10.html" title="力扣每日一题-1031"><div class="cover" style="background: var(--default-bg-color)"></div><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">力扣每日一题-1031</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span>相关推荐</span></div><div class="relatedPosts-list"><div><a href="/post/691d0a10.html" title="力扣每日一题-1031"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-26</div><div class="title">力扣每日一题-1031</div></div></a></div><div><a href="/post/cd65786b.html" title="排序算法总结"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-13</div><div class="title">排序算法总结</div></div></a></div><div><a href="/post/9a4e591a.html" title="力扣贪心题目"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-11</div><div class="title">力扣贪心题目</div></div></a></div><div><a href="/post/171c57a9.html" title="二分答案相关题目"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-10</div><div class="title">二分答案相关题目</div></div></a></div><div><a href="/post/4a13a2d3.html" title="力扣1685 &amp; 2615 前缀和"><div class="cover" style="background: var(--default-bg-color)"></div><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2023-04-10</div><div class="title">力扣1685 &amp; 2615 前缀和</div></div></a></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Oye</div><div class="author-info__description">道阻且长，行则将至</div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">8</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/oye666"><i class="fab fa-github"></i><span>follew me</span></a></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">这里是Oye的个人博客</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/7f73510d.html" title="华为4.26暑期实习机考">华为4.26暑期实习机考</a><time datetime="2023-05-05T09:23:54.000Z" title="发表于 2023-05-05 17:23:54">2023-05-05</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/691d0a10.html" title="力扣每日一题-1031">力扣每日一题-1031</a><time datetime="2023-04-26T05:10:24.000Z" title="发表于 2023-04-26 13:10:24">2023-04-26</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/cd65786b.html" title="排序算法总结">排序算法总结</a><time datetime="2023-04-13T14:07:14.000Z" title="发表于 2023-04-13 22:07:14">2023-04-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/9a4e591a.html" title="力扣贪心题目">力扣贪心题目</a><time datetime="2023-04-11T07:48:08.000Z" title="发表于 2023-04-11 15:48:08">2023-04-11</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/post/171c57a9.html" title="二分答案相关题目">二分答案相关题目</a><time datetime="2023-04-10T13:19:28.000Z" title="发表于 2023-04-10 21:19:28">2023-04-10</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url('/img/background.png')"><div id="footer-wrap"><div class="copyright">&copy;2023 By Oye</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">Welcome to my blog</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.min.js"></script><div class="js-pjax"></div><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="true"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div><!-- hexo injector body_end start --><script data-pjax>
+  function butterfly_clock_anzhiyu_injector_config(){
+    var parent_div_git = document.getElementsByClassName('sticky_layout')[0];
+    var item_html = '<div class="card-widget card-clock"><div class="card-glass"><div class="card-background"><div class="card-content"><div id="hexo_electric_clock"><img class="entered loading" id="card-clock-loading" src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/loading.gif" style="height: 120px; width: 100%;" data-ll-status="loading"/></div></div></div></div></div>';
+    console.log('已挂载butterfly_clock_anzhiyu')
+    if(parent_div_git) {
+      parent_div_git.insertAdjacentHTML("afterbegin",item_html)
+    }
+  }
+  var elist = 'null'.split(',');
+  var cpage = location.pathname;
+  var epage = 'all';
+  var qweather_key = 'dbb717a093444095851ab729763a0880';
+  var gaud_map_key = 'de1cea28e7480da86511c701fa3e1a05';
+  var baidu_ak_key = 'undefined';
+  var flag = 0;
+  var clock_rectangle = '112.982279,28.19409';
+  var clock_default_rectangle_enable = 'false';
+
+  for (var i=0;i<elist.length;i++){
+    if (cpage.includes(elist[i])){
+      flag++;
+    }
+  }
+
+  if ((epage ==='all')&&(flag == 0)){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  else if (epage === cpage){
+    butterfly_clock_anzhiyu_injector_config();
+  }
+  </script><script src="https://widget.qweather.net/simple/static/js/he-simple-common.js?v=2.0"></script><script data-pjax src="https://cdn.cbd.int/hexo-butterfly-clock-anzhiyu/lib/clock.min.js"></script><!-- hexo injector body_end end --></body></html>
